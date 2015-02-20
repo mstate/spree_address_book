@@ -2,9 +2,9 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_address_book'
-  s.version     = '2.0.3'
-  s.summary     = ' address book plugin spree 2.0'
-  s.description = ' address book plugin spree 2.0'
+  s.version     = '2.1'
+  s.summary     = ' address book plugin spree 2.1'
+  s.description = ' address book plugin spree 2.1'
   s.required_ruby_version = '>= 1.9.3'
 
   s.author    = 'Wojtek Zywno'

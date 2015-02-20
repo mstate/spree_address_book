@@ -26,9 +26,10 @@
   <% end %>
   <%= form.fields_for address_name do |address_form| %>
     <div class="inner" data-hook=<%="#{address_type}_inner" %>>
-      <%= render :partial => 'spree/addresses/form', :locals => {
+      <%= render :partial => 'spree/address/form', :locals => {
         :address_name => address_name,
         :address_form => address_form,
+        :form => address_form,
         :address_type => address_type,
         :address => Spree::Address.default
       } %>

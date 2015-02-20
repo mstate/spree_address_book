@@ -25,7 +25,6 @@ Spree::CheckoutController.class_eval do
       else
         params[:order].delete(:bill_address_id)
       end
-
     end
 
     def normalize_addresses

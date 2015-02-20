@@ -41,5 +41,5 @@
   <% end %>
 <% end %>
 <% if Spree::Config["alternative_#{address_name[0] == 'b' ? 'billing' : 'shipping'}_phone"] %>
-  <%= address_field(address_form, :alternative_phone, address_name) %>
+  <%= address_field(address_form, :alternative_phone, address_name) %><span class='required' id=<%="#{address_id}state-required"%>>*</span>
 <% end %>
