@@ -45,4 +45,11 @@ Spree::Address.class_eval do
       update_column :deleted_at, Time.now
     end
   end
+
+  def check
+    attrs = attributes.except('id', 'updated_at', 'created_at')
+    the_same_address = user.addresses.where(attrs).first
+    the_same_address ? the_same_address : self
+  end
+
 end
