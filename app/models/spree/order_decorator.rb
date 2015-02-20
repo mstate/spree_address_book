@@ -78,5 +78,9 @@ Spree::Order.class_eval do
     address
   end
   
+  def permitted_address_attributes
+    Spree::PermittedAttributes.class_variable_get("@@address_attributes")
+  end
+
     
 end
