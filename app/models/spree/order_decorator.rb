@@ -5,6 +5,8 @@
 Spree::Order.class_eval do
   before_validation :clone_shipping_address, :if => "Spree::AddressBook::Config[:disable_bill_address]"
   
+  before_save :create_separate_address_if_not_use_billing, unless: :use_billing?
+
   def clone_shipping_address
     if self.ship_address
       self.bill_address = self.ship_address
@@ -49,7 +51,16 @@ Spree::Order.class_eval do
   
   private
   
-  def update_or_create_address(attributes = {})
+  def create_separate_address_if_not_use_billing
+    return unless self.ship_address || self.bill_address
+    return if self.ship_address && self.bill_address && self.ship_address.id != self.bill_address.id
+    self.ship_address = update_or_create_address(
+      ActionController::Parameters.new(bill_address.attributes.except('id','created_at','updated_at'))
+      )
+  end
+
+  def update_or_create_address(string_key_attributes = {})
+    attributes = string_key_attributes
     return if attributes.blank?
     attributes = attributes.select{|k,v| v.present?}.permit(permitted_address_attributes)
 
